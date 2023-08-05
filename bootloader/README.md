@@ -11,7 +11,7 @@ A simple assembly-based bootloader for the awcatorX kernel
 | Load kernel into memory                                                                                                                                        |        |                                       |
 | Kernel compatible with grub2 multi-imode                                                                                                                       |        |                                       |
 
-# For documention, compilation and execution see
+# For documentation, compilation and execution see
 
 [Bootloader documentation](../documentation/bootloader/bootloader.asm.md)
 

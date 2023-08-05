@@ -34,6 +34,7 @@ This is still a WIP project, and I'm still learning.
 # My setup
 
 ArchLinux x64, i5 4cores 2HW threaded, IDE: Clion
+Debugging tools: qemu-system-x86_64, gdb, [Yurichev's Calculator](https://yurichev.com/progcalc/)
 
 # References to start "Hello world Kernel"
 
@@ -41,6 +42,7 @@ https://wiki.osdev.org/Bare_Bones  <br>
 https://www.gnu.org/software/grub/manual/multiboot2/multiboot.html#Example-OS-code <br>
 https://github.com/mattmassicotte/kernel-tutorial/tree/master <br>
 https://github.com/TralahM/simple-os-kernel/blob/master/kernel.cpp <br>
+https://github.com/mig-hub/mikeOS
 
 # References to post HelloWorld
 
