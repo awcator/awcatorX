@@ -1,18 +1,19 @@
 ; The code-design should be done like as if this runs in Intel 8086 processor from 1970s, it should be in 16bit instructions, also called real-mode.
 ; References for this code should be done by reading 8086 processor architecture but not x86_64 architecture  (x86_64/x86 instructions wont work)
 ; Author Awcator
-ORG 0x0000          ;   default: 0x7c00, what if BIOS set's up segment registers? then whole calculations will be gone. so make it zero, assign ourself segment registers
+;ORG 0          ;   default: 0x7c00, what if BIOS set's/dose not set's up up segment registers? then whole calculations will be gone. so make it zero, assign ourself segment registers
 BITS 16             ;   Tell assembler we want to use 16bits instructions. We want to run in real mode
 start:              ;   section label, denoted by $$
-    cli             ;   clear interrupts/Disable interrupts, since we want to  modify segment register, we dont want interrupts to happen by bios
-        mov ax, 0x7c0
-        mov ds,ax   ; Manually assigns ourself values to the data segments register
-        mov es,ax   ; Manually assigns ourself values to the Extra segments register
-        ;mov ax,0x0000 ; should we start ss from 0? or from 0x7c0
-        add ax, 544 ; 0x7c0+544
-        mov ss,ax   ; Manually assigns Stack segments register
-        mov sp, 0x4096  ; stackPointer above
-    sti             ; enable back bios interrupts
+    ;cli             ;   clear interrupts/Disable interrupts, since we want to  modify segment register, we dont want interrupts to happen by bios
+    ;    mov ax, 0x7c0
+    ;    mov ds,ax   ; Manually assigns ourself values to the data segments register, bcz we made org as 0x0
+    ;   mov es,ax   ; Manually assigns ourself values to the Extra segments register
+    ;    ;mov ax,0x0000 ; should we start ss from 0? or from 0x7c0
+    ;    mov ax, 0x00 ; 0x7c0+544
+    ;    mov ss,ax   ; Manually assigns Stack segments register
+    ;   mov sp, 0x7c00  ; stackPointer above
+    ;sti             ; enable back bios interrupts
+
     mov si, bootloader_title ;   point sourceIndex register point message address. This register will be used by lodsb
     call print_string_pointed_by_ds_and_si ; ds*16+si
     jmp $
