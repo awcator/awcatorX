@@ -42,8 +42,9 @@ https://wiki.osdev.org/Bare_Bones  <br>
 https://www.gnu.org/software/grub/manual/multiboot2/multiboot.html#Example-OS-code <br>
 https://github.com/mattmassicotte/kernel-tutorial/tree/master <br>
 https://github.com/TralahM/simple-os-kernel/blob/master/kernel.cpp <br>
-https://github.com/mig-hub/mikeOS
-
+https://github.com/mig-hub/mikeOS <br>
+https://dev.to/frosnerd/writing-my-own-boot-loader-3mld <br>
+https://github.com/cfenollosa/os-tutorial <br>
 # References to post HelloWorld
 
 https://wiki.osdev.org/Creating_an_Operating_System <br>
