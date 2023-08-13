@@ -48,12 +48,21 @@ https://github.com/cfenollosa/os-tutorial <br>
 https://github.com/klange/toaruos/releases/tag/0.5.0-rel <br>
 https://github.com/vinsdragonis/NoobOS <br>
 https://github.com/vinsdragonis/Wyvern <br>
+http://www.osdever.net/bkerndev/Docs/basickernel.htm <br>
+https://github.com/asido/OS <br> G(OLD)
+https://github.com/pdoane/osdev <br> G(OLD)
+https://github.com/flaneur2020/fleurix <br>
+https://github.com/chenyukang/Panda <br>
+https://github.com/MQuy/mos/tree/master/examples <br>
 
 # References to post HelloWorld
 
 https://wiki.osdev.org/Creating_an_Operating_System <br>
 https://github.com/piot/tiny-libc <br>
 https://github.com/soumitradev/assembly-fun <br>
+https://github.com/no92/uefi-bare-bones https://wiki.osdev.org/User:No92/UEFI_Bare_Bones <br>
+http://www.sebastianmihai.com/snowdrop/src/ <br>
+https://github.com/pdoane/osdev <br>
 
 # Inspiration
 

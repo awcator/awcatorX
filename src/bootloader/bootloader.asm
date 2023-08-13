@@ -39,6 +39,7 @@
 ; References for this code should be done by reading 8086 processor architecture but not x86_64 architecture  (x86_64/x86 instructions wont work)
 ; Author Awcator
 ; todo https://stackoverflow.com/questions/9660315/bootloader-strange-behavior?rq=3 https://wiki.osdev.org/El-Torito
+; https://github.com/asido/OS/tree/master/boot
 ORG 0x7C00          ;   Set the origin to 0x7C00 where the bootloader will be loaded.
 BITS 16              ;   Tell assembler we want to use 16bits instructions. We want to run in real mode
 ; Satisfy BIOS parameter block: read https://wiki.osdev.org/FAT#BPB_.28BIOS_Parameter_Block.29
