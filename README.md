@@ -45,8 +45,18 @@ https://github.com/TralahM/simple-os-kernel/blob/master/kernel.cpp <br>
 https://github.com/mig-hub/mikeOS <br>
 https://dev.to/frosnerd/writing-my-own-boot-loader-3mld <br>
 https://github.com/cfenollosa/os-tutorial <br>
+https://github.com/klange/toaruos/releases/tag/0.5.0-rel <br>
+https://github.com/vinsdragonis/NoobOS <br>
+https://github.com/vinsdragonis/Wyvern <br>
+
 # References to post HelloWorld
 
 https://wiki.osdev.org/Creating_an_Operating_System <br>
 https://github.com/piot/tiny-libc <br>
 https://github.com/soumitradev/assembly-fun <br>
+
+# Inspiration
+
+https://github.com/AlgorithMan-de/wyoos <br>
+https://github.com/klange/toaruos/releases?page=10 <br>
+https://github.com/LemonOSProject/LemonOS/tree/0.1.0 <br>

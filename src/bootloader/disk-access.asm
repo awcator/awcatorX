@@ -15,7 +15,9 @@ DISK_READ:
     mov ch, 0x0 ;our cylinder number
     mov cl, 0x2 ; sector number to read
     mov dh, 0x0 ; head number
-    ;mov dl, someDriveNumber, when I boot from qemu as single disk, bios automatically loads up my drive number at dl. ill just make use of the same. 0x80 was my DL
+    ;mov dl, someDriveNumber, when I boot from qemu as single disk, bios automatically loads up my drive number at dl. ill just make use of the same. 0x80 was my DL.
+    ;  (0 = floppy, 1 = floppy2, 0x80 = hdd, 0x81 = hdd2)
+    ;   eg. qemu -fda boot_sect_main.bin. read from floppy-disk
     mov bx,buffer; output is stored at ES:BX -> data buffer. So we bring our memory space address into bx
     int 0x13    ; call the interrupt to read the DISK
     jc error    ; if any error while reading disk it will put carry flag set to 1, if carry=1?jump to error. else print out disk contents

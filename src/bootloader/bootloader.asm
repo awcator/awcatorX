@@ -38,13 +38,13 @@
 ; The code-design should be done like as if this runs in Intel 8086 processor from 1970s, it should be in 16bit instructions, also called real-mode.
 ; References for this code should be done by reading 8086 processor architecture but not x86_64 architecture  (x86_64/x86 instructions wont work)
 ; Author Awcator
-
-ORG 0x7C00          ;   Set the origin to 0x7C00 where the bootloader will be loaded
+; todo https://stackoverflow.com/questions/9660315/bootloader-strange-behavior?rq=3 https://wiki.osdev.org/El-Torito
+ORG 0x7C00          ;   Set the origin to 0x7C00 where the bootloader will be loaded.
 BITS 16              ;   Tell assembler we want to use 16bits instructions. We want to run in real mode
 ; Satisfy BIOS parameter block: read https://wiki.osdev.org/FAT#BPB_.28BIOS_Parameter_Block.29
 jmp short start
 nop
-times 33 db 0       ; let the BIOS fill the first 33bytes after nop instruction, since bios likes to feed BIOS param block info to the bootloader. Not all BIOS fill it
+times 33 db 0       ; let the BIOS fill the first 33bytes after nop instruction, since bios likes to feed BIOS param block info to the bootloaders memory section. Not all BIOS fills it
 
 start:              ;   section label, denoted by $$
     ;cli             ;   clear interrupts/Disable interrupts, since we want to  modify segment register, we dont want interrupts to happen by bios
@@ -93,4 +93,4 @@ disk_load_error: db 'Error loading the DISK',0x0 ; A global variable like defini
 bootloader_title: db 'Loaded AwcatorXBootLoader 0.1',0x0 ; A global variable like definition
 times 510-($ - $$) db 0 ;   Pad zeros till 510th byte of the binary file
 dw 0xAA55               ;   Intel LittleEndian format. Write 0x55AA from 511th byte of the binary file. Now bios thinks this binary as bootloader binary. DW is 2 bytes, so it will write 0x55aa in 511th byte and 512th byte
-buffer:                 ;   Incase you want for extra purpose. like loading disk or kernel
+buffer:                 ;   In case you want for extra purpose. like loading disk or kernel

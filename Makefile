@@ -4,6 +4,11 @@ kernel_objects=kernel.o loader.o
 
 all: debug_bootloader
 #all: append_second_sector_disk_to_bootloader_bin
+boot_sector_apps:
+	echo "Compiling bootsector apps: bootpong"
+	nasm  -f bin ./src/apps/boot_sector_apps/boot_pong.asm -o ${BIN_LOCATION}boot_pong.bin
+	qemu-system-x86_64 -hda ${BIN_LOCATION}boot_pong.bin
+
 bootloader:
 	echo "Compiling Bootloader"
 	nasm  -f bin ./src/bootloader/bootloader.asm -o ${BIN_LOCATION}awcator_bootloader.bin
