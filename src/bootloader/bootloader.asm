@@ -42,6 +42,8 @@
 ; https://github.com/asido/OS/tree/master/boot
 ORG 0x7C00           ;   Set the origin to 0x7C00 where the bootloader will be loaded.; comment this line to run in debug mode, to compile without symbols for prod, uncomment this
 BITS 16              ;   Tell assembler we want to use 16bits instructions. We want to run in real mode
+CR EQU 0x0d          ; Carriage return
+LF EQU 0x0a          ; Line feed
 ; Satisfy BIOS parameter block: read https://wiki.osdev.org/FAT#BPB_.28BIOS_Parameter_Block.29
 jmp short start
 nop
@@ -57,6 +59,13 @@ start:              ;   section label, denoted by $$
     ;   mov ss,ax   ; Manually assigns Stack segments register
     ;   mov sp, 0x7c00  ; stackPointer above
     ;sti             ; enable back bios interrupts
+
+    ; Method 2 found at: https://stackoverflow.com/questions/53861895/assembly-32-bit-print-to-display-code-runs-on-qemu-fails-to-work-on-real-hardwa
+    ; xor ax, ax                  ; DS=SS=0. Real mode code below doesn't use ES
+    ; mov ds, ax
+    ; mov ss, ax                  ; Stack at 0x0000:0x7c00 below bootloader
+    ; mov sp, 0x7c00
+    ; cld                         ; Set string instructions to use forward movement
 
     ;%include "./src/bootloader/custom_interrupt_vector-table.asm"
     ;mov ax, cs
@@ -77,6 +86,7 @@ start:              ;   section label, denoted by $$
 
     ; ------------------------------------------------------------------------------------
     ; some functions
+    BITS 16 ; add this incase other part of the code (like gdt) ask the compiler to compile in x86 format, we want compiler to return back to normal realmode
     print_string_pointed_by_ds_and_si:
         mov bh,0xa0        ;   color background/foreground.
         mov bl,0x07
@@ -96,8 +106,8 @@ start:              ;   section label, denoted by $$
 ; we know our bootloader should have signature 0xAA55 so we hv to create the binary with that ending signature
 ; we want to put 0xAA55 in 511th byte in the binary. So we pad with zeros or anything (better zeros) from current location upto 510th byte location
 ; how we do is, we will calculate number of bytes to be padded. '$; gives address of last instruction. '$$' gives  the address of 'start' section
-disk_load_error: db 'Error loading the DISK',0x0 ; A global variable like definition
-bootloader_title: db 'Loaded AwcatorXBootLoader 0.1',0x0 ; A global variable like definition
+disk_load_error: db 'Error loading the DISK',CR,LF,0x0 ; A global variable like definition
+bootloader_title: db 'Loaded AwcatorXBootLoader 0.1',CR,LF,0x0 ; A global variable like definition
 times 510-($ - $$) db 0 ;   Pad zeros till 510th byte of the binary file
 dw 0xAA55               ;   Intel LittleEndian format. Write 0x55AA from 511th byte of the binary file. Now bios thinks this binary as bootloader binary. DW is 2 bytes, so it will write 0x55aa in 511th byte and 512th byte
 buffer:                 ;   In case you want for extra purpose. like loading disk or kernel
