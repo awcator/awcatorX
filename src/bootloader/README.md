@@ -14,5 +14,6 @@ A simple assembly-based bootloader for the awcatorX kernel
 # For documentation, compilation and execution see
 
 [Bootloader documentation](../documentation/bootloader/bootloader.asm.md)
+[GDT](http://www.flingos.co.uk/docs/reference/Global-Descriptor-Table/)
 
 

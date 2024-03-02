@@ -1,19 +1,21 @@
 BIN_LOCATION=./bin/
 
 kernel_objects=kernel.o loader.o
-
+mkdir_bin:
+	echo "creating bin"
+	mkdir ${BIN_LOCATION} | true
 all: debug_bootloader
 #all: append_second_sector_disk_to_bootloader_bin
-boot_sector_apps:
+boot_sector_apps: mkdir_bin
 	echo "Compiling bootsector apps: bootpong"
 	nasm  -f bin ./src/apps/boot_sector_apps/boot_pong.asm -o ${BIN_LOCATION}boot_pong.bin
 	qemu-system-x86_64 -hda ${BIN_LOCATION}boot_pong.bin
 
-bootloader:
+bootloader: mkdir_bin
 	echo "Compiling Bootloader"
 	nasm  -f bin ./src/bootloader/bootloader.asm -o ${BIN_LOCATION}awcator_bootloader.bin
-	#qemu-system-x86_64 -hda ${BIN_LOCATION}awcator_bootloader.bin
-debug_bootloader:
+	qemu-system-x86_64 -hda ${BIN_LOCATION}awcator_bootloader.bin
+debug_bootloader: mkdir_bin
 	echo "Compiling Bootloader for debug purpose"
 	# https://stackoverflow.com/questions/32955887/how-to-disassemble-16-bit-x86-boot-sector-code-in-gdb-with-x-i-pc-it-gets-tr
 	nasm -f elf32 -g3 -F dwarf ./src/bootloader/bootloader.asm -o ${BIN_LOCATION}awcator_bootloader.o

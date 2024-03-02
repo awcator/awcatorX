@@ -40,7 +40,7 @@
 ; Author Awcator
 ; todo https://stackoverflow.com/questions/9660315/bootloader-strange-behavior?rq=3 https://wiki.osdev.org/El-Torito
 ; https://github.com/asido/OS/tree/master/boot
-ORG 0x7C00          ;   Set the origin to 0x7C00 where the bootloader will be loaded.
+ORG 0x7C00           ;   Set the origin to 0x7C00 where the bootloader will be loaded.; comment this line to run in debug mode, to compile without symbols for prod, uncomment this
 BITS 16              ;   Tell assembler we want to use 16bits instructions. We want to run in real mode
 ; Satisfy BIOS parameter block: read https://wiki.osdev.org/FAT#BPB_.28BIOS_Parameter_Block.29
 jmp short start
@@ -70,7 +70,13 @@ start:              ;   section label, denoted by $$
 
     CODE:mov si, bootloader_title ;   point sourceIndex register point message address. This register will be used by lodsb
     call print_string_pointed_by_ds_and_si ; ds*16+si
+
+    ; GDT implementation starts here, inorder to move from 16 bit real mode to protected mode
+    %include "./src/bootloader/gdt_x86.asm"
     jmp $
+
+    ; ------------------------------------------------------------------------------------
+    ; some functions
     print_string_pointed_by_ds_and_si:
         mov bh,0xa0        ;   color background/foreground.
         mov bl,0x07
