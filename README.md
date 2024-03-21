@@ -69,3 +69,7 @@ https://github.com/pdoane/osdev <br>
 https://github.com/AlgorithMan-de/wyoos <br>
 https://github.com/klange/toaruos/releases?page=10 <br>
 https://github.com/LemonOSProject/LemonOS/tree/0.1.0 <br>
+
+# Notes
+https://sergiorosello.com/posts/entering_32-bit-protected-mode/
+https://0xax.gitbooks.io/linux-insides/content/
